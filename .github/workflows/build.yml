@@ -9,6 +9,7 @@ on:
 
 jobs:
   build:
+    name: "Build & Publish"
     runs-on: self-hosted
     steps:
       -
