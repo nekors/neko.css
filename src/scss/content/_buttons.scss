@@ -1,0 +1,15 @@
+//
+//  Copyright 2022 neko.rs contributors <https://neko.rs>
+//
+//  Licensed with GNU Affero General Public License v3.0 or later
+//
+
+@use "../utilities/colors";
+
+button,
+.neko-btn,
+[type="button"] {
+  @include colors.accented() using ($accent) {
+    background-color: colors.var($accent);
+  }
+}

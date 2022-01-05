@@ -1,0 +1,23 @@
+//
+//  Copyright 2022 neko.rs contributors <https://neko.rs>
+//
+//  Licensed with GNU Affero General Public License v3.0 or later
+//
+
+@use "utilities/colors";
+
+@include colors.add_accent("primary", (
+  0: #000000,
+  10: #041E49,
+  20: #062E6F,
+  30: #0842A0,
+  40: #0B57D0,
+  50: #1B6EF3,
+  60: #4C8DF6,
+  70: #7CACF8,
+  80: #A8C7FA,
+  90: #D3E3FD,
+  95: #ECF3FE,
+  99: #FAFBFF,
+  100: #FFFFFF
+));

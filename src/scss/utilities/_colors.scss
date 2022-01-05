@@ -1,0 +1,43 @@
+//
+//  Copyright 2022 neko.rs contributors <https://neko.rs>
+//
+//  Licensed with GNU Affero General Public License v3.0 or later
+//
+
+@use "sass:color";
+@use "sass:list";
+@use "themes";
+
+$_accents: () !default;
+
+@function _split($hex) {
+  @return color.red($hex), color.green($hex), color.blue($hex);
+}
+
+@mixin add($color_name, $color, $name: null) {
+  @each $key, $value in $color {
+    @include themes.add((
+      #{$color_name}-#{$key}: _split($value)
+    ), $name);
+  }
+}
+
+@mixin add_accent($name, $accent) {
+  $_accents: list.join($_accents, $name) !global;
+  @include add($name, $accent);
+}
+
+@function var($name, $index: 50, $opacity: 1) {
+  @if $opacity == 1 {
+    @return #{rgb}(themes.var(#{$name}-#{$index}));
+  }
+  @return #{rgba}(themes.var(#{$name}-#{$index}), $opacity);
+}
+
+@mixin accented() {
+  @each $accent in $_accents {
+    &.#{$accent} {
+      @content($accent);
+    }
+  }
+}

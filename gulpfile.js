@@ -3,13 +3,13 @@ const sass = require("gulp-sass")(require('sass'));
 const rename = require('gulp-rename');
 
 function scss() {
-  return src('./src/scss/neko.scss')
+  return src('./src/scss/**/*.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(dest('./dist/'))
 }
 
 function minify() {
-  return src(['./dist/*.css', '!./dist/*.min.css'])
+  return src(['./dist/**/*.css', '!./dist/**/*.min.css'])
     .pipe(
       require('gulp-autoprefixer')({
         cascade: false
@@ -25,7 +25,7 @@ function minify() {
 }
 
 function purge() {
-  return src('./dist/*.min.css')
+  return src('./dist/**/*.min.css')
     .pipe(require('gulp-purgecss')({
       content: ['../templates/**/*.html']
     }))

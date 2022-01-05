@@ -1,11 +1,8 @@
-/*
+//
 //  Copyright 2022 neko.rs contributors <https://neko.rs>
 //
 //  Licensed with GNU Affero General Public License v3.0 or later
-*/
+//
 
-@use "config";
-@use "content";
-
-@use "utilities/themes";
-@include themes.build();
+@forward "colors";
+@forward "themes";

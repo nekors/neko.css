@@ -1,0 +1,45 @@
+//
+//  Copyright 2022 neko.rs contributors <https://neko.rs>
+//
+//  Licensed with GNU Affero General Public License v3.0 or later
+//
+
+@use "sass:map";
+@use "sass:list";
+
+$_themes: () !default;
+$_prune_cache: () !default;
+
+@mixin add($theme, $name: null) {
+  $_themes: map.merge($_themes, $name, $theme) !global;
+}
+
+@function var($key) {
+  @if map.has-key($_themes, null, $key) {
+    $_prune_cache: list.join($_prune_cache, $key) !global;
+    @return #{var}(--#{$key});
+  }
+  @error "Variable #{$key} is not defined in the base theme";
+}
+
+@mixin build($prune: true) {
+  @each $name, $theme in $_themes {
+    @if $name {
+      .#{$name}-theme :root {
+        @each $key, $value in $theme {
+          @if list.index($_prune_cache, $key) or not $prune {
+            --#{$key}: #{$value};
+          }
+        }
+      }
+    } @else {
+      :root {
+        @each $key, $value in $theme {
+          @if list.index($_prune_cache, $key) or not $prune {
+            --#{$key}: #{$value};
+          }
+        }
+      }
+    }
+  }
+}
