@@ -1,0 +1,15 @@
+//
+//  Copyright 2022 neko.rs contributors <https://neko.rs>
+//
+//  Licensed with GNU Affero General Public License v3.0 or later
+//
+
+@use "colors";
+
+@mixin disabled() {
+  &:disabled {
+    pointer-events: none;
+    background-color: colors.var(on-surface, .12);
+    color: colors.var(on-surface, .38);
+  }
+}

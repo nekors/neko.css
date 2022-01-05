@@ -4,7 +4,6 @@
 //  Licensed with GNU Affero General Public License v3.0 or later
 //
 
-@forward "colors";
-@forward "gradients";
-@forward "states";
-@forward "themes";
+@function mono($val) {
+  @return linear-gradient($val, $val);
+}

@@ -5,11 +5,22 @@
 //
 
 @use "../utilities/colors";
+@use "../utilities/gradients";
+@use "../utilities/states";
 
+// TODO: Remove some to reduce amount of classes
 button,
 .neko-btn,
 [type="button"] {
   @include colors.accented() using ($accent) {
-    background-color: colors.var(on-#{$accent});
+    background-color: colors.var("#{$accent}");
+    color: colors.var("on-#{$accent}");
+    @include states.disabled();
+    &:hover {
+      background-image: gradients.mono(colors.var(on-#{$accent}, .08));
+    }
+    &:focus, &:active { //TODO: possibly remove active
+      background-image: gradients.mono(colors.var(on-#{$accent}, .12));
+    }
   }
 }

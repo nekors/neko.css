@@ -35,6 +35,8 @@ $accents: () !default;
 }
 
 @mixin accented() {
+  // Default to the first available accent
+  @content(list.nth($accents, 1));
   @each $accent in $accents {
     &.#{$accent} {
       @content($accent);
