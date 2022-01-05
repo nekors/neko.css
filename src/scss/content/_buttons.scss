@@ -10,6 +10,6 @@ button,
 .neko-btn,
 [type="button"] {
   @include colors.accented() using ($accent) {
-    background-color: colors.var($accent);
+    background-color: colors.var(on-#{$accent});
   }
 }

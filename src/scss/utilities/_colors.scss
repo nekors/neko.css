@@ -8,7 +8,7 @@
 @use "sass:list";
 @use "themes";
 
-$_accents: () !default;
+$accents: () !default;
 
 @function _split($hex) {
   @return color.red($hex), color.green($hex), color.blue($hex);
@@ -23,19 +23,19 @@ $_accents: () !default;
 }
 
 @mixin add_accent($name, $accent) {
-  $_accents: list.join($_accents, $name) !global;
+  $accents: list.join($accents, $name) !global;
   @include add($name, $accent);
 }
 
-@function var($name, $index: 50, $opacity: 1) {
+@function var($name, $opacity: 1) {
   @if $opacity == 1 {
-    @return #{rgb}(themes.var(#{$name}-#{$index}));
+    @return #{rgb}(themes.var($name));
   }
-  @return #{rgba}(themes.var(#{$name}-#{$index}), $opacity);
+  @return #{rgba}(themes.var($name), $opacity);
 }
 
 @mixin accented() {
-  @each $accent in $_accents {
+  @each $accent in $accents {
     &.#{$accent} {
       @content($accent);
     }

@@ -8,7 +8,7 @@
 @use "sass:list";
 
 $_themes: () !default;
-$_prune_cache: () !default;
+//$_prune_cache: () !default;
 
 @mixin add($theme, $name: null) {
   $_themes: map.merge($_themes, $name, $theme) !global;
@@ -16,7 +16,7 @@ $_prune_cache: () !default;
 
 @function var($key) {
   @if map.has-key($_themes, null, $key) {
-    $_prune_cache: list.join($_prune_cache, $key) !global;
+    //$_prune_cache: list.join($_prune_cache, $key) !global;
     @return #{var}(--#{$key});
   }
   @error "Variable #{$key} is not defined in the base theme";
@@ -27,17 +27,17 @@ $_prune_cache: () !default;
     @if $name {
       .#{$name}-theme :root {
         @each $key, $value in $theme {
-          @if list.index($_prune_cache, $key) or not $prune {
+          //@if list.index($_prune_cache, $key) or not $prune {
             --#{$key}: #{$value};
-          }
+          //}
         }
       }
     } @else {
       :root {
         @each $key, $value in $theme {
-          @if list.index($_prune_cache, $key) or not $prune {
+          //@if list.index($_prune_cache, $key) or not $prune {
             --#{$key}: #{$value};
-          }
+          //}
         }
       }
     }
